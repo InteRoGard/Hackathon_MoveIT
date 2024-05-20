@@ -1,0 +1,15 @@
+Component   : DIOAD1036W78L463D272
+PCB Library : components.PcbLib
+Date        : 23.05.2024
+Time        : 21:11:01
+
+
+
+Dimension : 13.411 x 2.946 mm
+
+ Layer(s)              Pads(s)  Tracks(s)  Fill(s)  Arc(s)  Text(s)
+--------------------------------------------------------------------
+ Multi Layer                 2          0        0       0        0
+ Top Overlay                 0          8        0       1        0
+--------------------------------------------------------------------
+ Total                       2          8        0       1        0
