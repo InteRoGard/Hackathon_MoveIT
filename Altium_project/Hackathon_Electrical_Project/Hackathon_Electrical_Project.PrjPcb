@@ -67,23 +67,6 @@ GenerateClassCluster=0
 DocumentUniqueId=TMWGQTQA
 
 [Document2]
-DocumentPath=Sensors_modules.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=0
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=ZOEXWRBH
-
-[Document3]
 DocumentPath=modules.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -100,7 +83,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=RVLMIDPN
 
-[Document4]
+[Document3]
 DocumentPath=modules.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -117,7 +100,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=JXEKJLMB
 
-[Document5]
+[Document4]
 DocumentPath=components.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -134,7 +117,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=PZSXXUZV
 
-[Document6]
+[Document5]
 DocumentPath=components.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -151,7 +134,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=DRQLGFKW
 
-[Document7]
+[Document6]
 DocumentPath=STM32F103C6.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -167,6 +150,23 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=CPWYTGHP
+
+[Document7]
+DocumentPath=Sensors_modules.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=0
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=ZOEXWRBH
 
 [Document8]
 DocumentPath=PCB_Hackathon.PcbDoc
