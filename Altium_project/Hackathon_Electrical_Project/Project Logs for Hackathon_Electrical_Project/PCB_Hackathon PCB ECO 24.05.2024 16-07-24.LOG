@@ -1,0 +1,9 @@
+Add Pin To Net: Unknown Pin: Pin D1-0
+Add Pin To Net: Unknown Pin: Pin D1-1
+Add Pin To Net: Unknown Pin: Pin L1-0
+Add Pin To Net: Unknown Pin: Pin U2-0
+Added Pin To Net: NetName=I2C_CS Pin=U2-1
+Added Pin To Net: NetName=3V3-SYS Pin=U2-2
+Added Pin To Net: NetName=GND Pin=U2-2
+Add Class Member: Failed to add class member : Component D1 BYV10-40
+Added Room: Name=STM32-sheet
