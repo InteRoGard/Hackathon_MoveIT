@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include <string.h>
+#include "ds18b20.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,7 +50,7 @@ UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-
+DS18B20 temperatureSensor;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,6 +60,7 @@ static void MX_USART1_UART_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USART2_UART_Init(void);
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -75,7 +78,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	const uint8_t hello[] = "Hello, World\r\n";
+	const uint8_t hello[] = "Comitas Akademya\r\n";
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -100,11 +103,21 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI1_Init();
   MX_USART2_UART_Init();
+  DS18B20_Init(&temperatureSensor, &huart2);
   /* USER CODE BEGIN 2 */
-  HAL_UART_Transmit(&huart1, hello, sizeof(hello) - 1, 1000);
-  //DS18B20_Init();
-  //char msg[64];
-  //float temperature;
+  DS18B20_InitializationCommand(&temperatureSensor);
+  DS18B20_ReadRom(&temperatureSensor);
+  DS18B20_ReadScratchpad(&temperatureSensor);
+  char msg[64];
+  uint8_t settings[3];
+    settings[0] = temperatureSensor.temperatureLimitHigh;
+    settings[1] = temperatureSensor.temperatureLimitLow;
+    settings[2] = DS18B20_12_BITS_CONFIG;
+
+    DS18B20_InitializationCommand(&temperatureSensor);
+    DS18B20_SkipRom(&temperatureSensor);
+    DS18B20_WriteScratchpad(&temperatureSensor, settings);
+  HAL_UART_Transmit(&huart1, hello, sizeof(hello) - 1, 100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -114,8 +127,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_UART_Transmit(&huart1, hello, sizeof(hello), 1000);
-	  	  HAL_Delay(1000);
+	  //HAL_UART_Transmit(&huart1, IE, sizeof(IE) - 1, 100);
+	  DS18B20_InitializationCommand(&temperatureSensor);
+	  DS18B20_SkipRom(&temperatureSensor);
+	  DS18B20_ConvertT(&temperatureSensor, DS18B20_DELAY); //ERROR
+	  DS18B20_InitializationCommand(&temperatureSensor);
+	  DS18B20_SkipRom(&temperatureSensor);
+	  DS18B20_ReadScratchpad(&temperatureSensor);
+	  snprintf(msg, sizeof(msg), "Temperature: %d\r\n", (int16_t)temperatureSensor.temperature);
+	  HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
   }
   /* USER CODE END 3 */
 }
@@ -129,7 +149,7 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Initializes the RCC Oscillators according to the specified parameters
+/** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
