@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=I2C_CS Pin=U2-1
+Added Pin To Net: NetName=3V3-SYS Pin=U2-2
+Added Pin To Net: NetName=GND Pin=U2-2
+Added Room: Name=STM32-sheet

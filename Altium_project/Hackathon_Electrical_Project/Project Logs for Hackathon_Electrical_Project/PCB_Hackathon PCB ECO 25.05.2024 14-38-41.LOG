@@ -1,0 +1,7 @@
+Added Component: Designator=D1(BYV10-40)
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=GND Pin=D1-2
+Added Pin To Net: NetName=I2C_CS Pin=U2-1
+Added Pin To Net: NetName=3V3-SYS Pin=U2-2
+Added Pin To Net: NetName=GND Pin=U2-2
+Added Member To Class: ClassName=Modules-sheet Member=Component D1 BYV10-40

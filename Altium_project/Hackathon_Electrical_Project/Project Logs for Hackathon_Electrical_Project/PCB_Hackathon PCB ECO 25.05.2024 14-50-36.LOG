@@ -1,0 +1,15 @@
+Added Component: Designator=L1(IND_LQH43CN2R2M03L)
+Add component (AddParameter): Name = "Availability"; Value = "Good"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Murata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "LQH43CN2R2M03L"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "NONSTANDARD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/LQH43CN2R2M03L/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/LQH43CN2R2M03L/Murata/view-part/4550537/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetD1_1 Pin=L1-1
+Added Pin To Net: NetName=3V3-SYS Pin=L1-2
+Added Pin To Net: NetName=I2C_SDA Pin=U2-1
+Added Pin To Net: NetName=3V3-SYS Pin=U2-2
+Added Pin To Net: NetName=NetC3_2 Pin=U2-2
+Added Member To Class: ClassName=Modules-sheet Member=Component L1 LQH43C

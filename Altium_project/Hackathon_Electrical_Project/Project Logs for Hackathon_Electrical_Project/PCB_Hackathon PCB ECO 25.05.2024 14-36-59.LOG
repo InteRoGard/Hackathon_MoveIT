@@ -1,0 +1,12 @@
+Added Component: Designator=D1(BYV10-40)
+Added Pin To Net: NetName=GND Pin=D1-2
+Added Pin To Net: NetName=I2C_SDA Pin=U2-1
+Added Pin To Net: NetName=3V3-SYS Pin=U2-2
+Added Pin To Net: NetName=NetC3_2 Pin=U2-2
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=NetD1_1 Pin=IC1-2
+Added Pin To Net: NetName=NetD1_1 Pin=L1-1
+Added Net: Name=NetD1_1
+Added Member To Class: ClassName=Modules-sheet Member=Component D1 BYV10-40
+Added Member To Class: ClassName=STM32-sheet Member=Component Y1
+Added Room: Name=STM32-sheet

@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=I2C_SDA Pin=U2-1
+Removed Pin From Net: NetName=NetC3_2 Pin=U2-2
+Removed Pin From Net: NetName=GND Pin=U2-3
+Added Pin To Net: NetName=GND Pin=U2-1
+Added Pin To Net: NetName=I2C_SCL Pin=U2-3
+Added Pin To Net: NetName=I2C_SDA Pin=U2-4
+Added Pin To Net: NetName=3V3-SYS Pin=U2-9
+Added Pin To Net: NetName=NetC3_2 Pin=U2-10
+Added Pin To Net: NetName=I2C_CS Pin=U2-15
+Added Pin To Net: NetName=GND Pin=U2-19
+Added Pin To Net: NetName=GND Pin=U2-25
+Added Member To Class: ClassName=Modules-sheet Member=Component C7 470uF
+Added Room: Name=STM32-sheet
