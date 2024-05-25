@@ -1,4 +1,4 @@
-Core/Inc/ds18b20.o: ../Core/Inc/ds18b20.c ../Core/Inc/ds18b20.h \
+Core/Src/ds18b20.o: ../Core/Src/ds18b20.c ../Core/Inc/ds18b20.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \

@@ -24,11 +24,15 @@
 #include <stdio.h>
 #include <string.h>
 #include "ds18b20.h"
+#include "bmp280.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+#define MEASURMENTS_NUM 50
+#define NUM_OF_FLASH_CELLS 4096
+#include <string.h>
+#include <stdio.h>
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -49,8 +53,25 @@ SPI_HandleTypeDef hspi1;
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
+BMP280_HandleTypedef bmp280;
+
 /* USER CODE BEGIN PV */
 DS18B20 temperatureSensor;
+
+float pressure, temperature, humidity;
+
+uint32_t data_to_flash;
+uint8_t data_to_uart[128];
+uint16_t size_to_uart;
+float altitude_0 = 0;
+float altitude_above_ground = 0;
+float altitude_above_ground_prev = 0;
+float altitude_t = 0;
+float altitude_current = 0;
+float altitude_to_flash = 0;
+uint8_t flash_step = 4; // 4 bytes for measurment
+
+char *status = "";
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -60,7 +81,7 @@ static void MX_USART1_UART_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USART2_UART_Init(void);
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
+
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -103,7 +124,6 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI1_Init();
   MX_USART2_UART_Init();
-  DS18B20_Init(&temperatureSensor, &huart2);
   /* USER CODE BEGIN 2 */
   DS18B20_InitializationCommand(&temperatureSensor);
   DS18B20_ReadRom(&temperatureSensor);
@@ -118,6 +138,7 @@ int main(void)
     DS18B20_SkipRom(&temperatureSensor);
     DS18B20_WriteScratchpad(&temperatureSensor, settings);
   HAL_UART_Transmit(&huart1, hello, sizeof(hello) - 1, 100);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -130,10 +151,11 @@ int main(void)
 	  //HAL_UART_Transmit(&huart1, IE, sizeof(IE) - 1, 100);
 	  DS18B20_InitializationCommand(&temperatureSensor);
 	  DS18B20_SkipRom(&temperatureSensor);
-	  DS18B20_ConvertT(&temperatureSensor, DS18B20_DELAY); //ERROR
+	  DS18B20_ConvertT(&temperatureSensor, DS18B20_DATA); //ERROR
 	  DS18B20_InitializationCommand(&temperatureSensor);
 	  DS18B20_SkipRom(&temperatureSensor);
 	  DS18B20_ReadScratchpad(&temperatureSensor);
+
 	  snprintf(msg, sizeof(msg), "Temperature: %d\r\n", (int16_t)temperatureSensor.temperature);
 	  HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
   }
@@ -149,7 +171,7 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-/** Initializes the RCC Oscillators according to the specified parameters
+  /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
